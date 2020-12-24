@@ -17,7 +17,7 @@ public class Fleet {
                 .findFirst().orElse(null);
     }
 
-    public void updateCarStatus(Car car) {
+    public void updateCarStatus(Car car, LocalDateTime tripEndsAt) {
 
     }
 }

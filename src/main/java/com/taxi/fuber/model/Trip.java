@@ -3,19 +3,24 @@ package com.taxi.fuber.model;
 import java.time.LocalDateTime;
 
 public class Trip {
-    private LocalDateTime endsAt;
-    private double distanceInKMs;
+    private Car car;
+    private LocalDateTime bookingTime;
+    private double distanceTraveled;
+    private double timeTakenInMinutes;
 
-    public Trip(LocalDateTime endsAt, double distanceInKMs) {
-        this.endsAt = endsAt;
-        this.distanceInKMs = distanceInKMs;
-    }
-
-    public boolean isComplete(LocalDateTime time) {
-        return endsAt.isBefore(time);
+    public Trip(Car car, LocalDateTime bookingTime, Location pickUpLocation, Location dropLocation) {
+        this.car = car;
+        this.bookingTime = bookingTime;
+        this.distanceTraveled = this.car.getLocation().distanceTo(pickUpLocation)
+                + pickUpLocation.distanceTo(dropLocation);
+        this.timeTakenInMinutes = this.car.getTimeTakenInMinutes(this.distanceTraveled);
     }
 
     public double getCharge() {
-        return 0;
+        return this.car.calculateTripCharge(timeTakenInMinutes);
+    }
+
+    public LocalDateTime getTripEndsAt() {
+        return bookingTime.plusMinutes((long) timeTakenInMinutes);
     }
 }

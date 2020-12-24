@@ -9,9 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CarTest {
 
@@ -46,20 +43,34 @@ public class CarTest {
     public void shouldReturnTrueWhenCurrentTripIsCompleted() {
         LocalDateTime tripStartTime = LocalDateTime.now();
 
-        Trip trip = mock(Trip.class);
-        when(trip.isComplete(eq(tripStartTime))).thenReturn(true);
-        pinkCarOne.updateTrip(trip);
-
         boolean available = pinkCarOne.isAvailable(tripStartTime);
 
         assertTrue(available);
     }
 
     @Test
+    public void shouldAddAdditionalChargeWhenPinkCar() {
+        double distanceToTravel = 45;
+
+        double tripCharge = pinkCarOne.calculateTripCharge(distanceToTravel);
+
+        assertEquals(140, tripCharge);
+    }
+
+    @Test
+    public void shouldNotAddAdditionalChargeWhenNotPinkCar() {
+        double distanceToTravel = 45;
+
+        double tripCharge = regularCarOne.calculateTripCharge(distanceToTravel);
+
+        assertEquals(135, tripCharge);
+    }
+
+    @Test
     public void shouldReturnTimeTakenWhenDistanceGiven() {
         double distanceToTravel = 45;
 
-        long timeTaken = pinkCarOne.getTimeTakenInMinutes(distanceToTravel);
+        double timeTaken = pinkCarOne.getTimeTakenInMinutes(distanceToTravel);
 
         assertEquals(90, timeTaken);
     }
