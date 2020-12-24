@@ -10,4 +10,8 @@ public class Trip {
         this.endsAt = endsAt;
         this.distanceInKMs = distanceInKMs;
     }
+
+    public boolean isComplete(LocalDateTime time) {
+        return false;
+    }
 }

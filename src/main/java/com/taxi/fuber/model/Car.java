@@ -28,7 +28,11 @@ public class Car {
     }
 
     public boolean isAvailable(LocalDateTime time) {
-        return false;
+        return trip.isComplete(time);
+    }
+
+    public void updateTrip(Trip trip) {
+        this.trip = trip;
     }
 }
 
