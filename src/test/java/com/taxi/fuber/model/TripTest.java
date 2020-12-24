@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TripTest {
 
-
     @Test
     public void shouldReturnTrueWhenTripEndedBeforeGivenTime() {
         LocalDateTime tripStartTime = LocalDateTime.now();
