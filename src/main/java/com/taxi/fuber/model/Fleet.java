@@ -16,5 +16,9 @@ public class Fleet {
                 filter(car -> car.getColor().equals(color) && car.isAvailable(tripStartTime))
                 .findFirst().orElse(null);
     }
+
+    public void updateCarStatus(Car car) {
+
+    }
 }
 
