@@ -12,6 +12,6 @@ public class Trip {
     }
 
     public boolean isComplete(LocalDateTime time) {
-        return false;
+        return endsAt.isBefore(time);
     }
 }
