@@ -22,5 +22,13 @@ public class Car {
     public String getPlateNumber() {
         return this.plateNumber;
     }
+
+    public Location getLocation() {
+        return this.currentLocation;
+    }
+
+    public boolean isAvailable(LocalDateTime time) {
+        return false;
+    }
 }
 

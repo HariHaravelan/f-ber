@@ -11,8 +11,10 @@ public class Fleet {
         this.cars = cars;
     }
 
-    public Car getAnAvailableCar(Color color, LocalDateTime tripStartTime, Location location) {
-        return null;
+    public Car getAnNearestAvailableCar(Color color, LocalDateTime tripStartTime, Location pickupLocation) {
+        return this.cars.stream().sorted(new CarComparator<>(pickupLocation)).
+                filter(car -> car.getColor().equals(color) && car.isAvailable(tripStartTime))
+                .findFirst().orElse(null);
     }
 }
 

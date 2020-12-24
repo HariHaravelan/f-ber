@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LocationTest {
 
-
     @Test
     public void shouldReturnDistanceToOtherLocation() {
         Location bengaluru = new Location(12.972442, 77.580643);
