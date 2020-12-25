@@ -1,7 +1,10 @@
 package com.taxi.fuber.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.time.LocalDateTime;
 
+@JsonSerialize
 public class Car {
     private String plateNumber;
     private Color color;
@@ -38,8 +41,16 @@ public class Car {
                 distanceOfTrip * TripRule.CHARGE_PER_KM + this.color.getAdditionalCharge();
     }
 
-    public double getTimeTakenInMinutes(double distanceInKm) {
-        return (distanceInKm / this.speedKmPh) * 60;
+    public int getTimeTakenInMinutes(double distanceInKm) {
+        return (int) ((distanceInKm / this.speedKmPh) * 60);
+    }
+
+    public void updateNextAvailableAt(LocalDateTime tripEndsAt) {
+        this.nextAvailableAt = tripEndsAt;
+    }
+
+    public void updateCurrentLocation(Location dropLocation) {
+        this.currentLocation = dropLocation;
     }
 }
 

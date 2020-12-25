@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TripPlanTest {
 
@@ -24,20 +23,23 @@ public class TripPlanTest {
 
         when(fleet.getAnNearestAvailableCar(eq(Color.PINK), eq(bookingTime), eq(bengaluru)))
                 .thenReturn(pinkCarOne);
+        doNothing().when(fleet).updateCarStatus(eq("ABC123"), eq(bookingTime), eq(chennai));
         when(pinkCarOne.getLocation()).thenReturn(bengaluru);
-        when(bengaluru.distanceTo(eq(bengaluru))).thenReturn(0.0);
-        when(bengaluru.distanceTo(eq(chennai))).thenReturn(300.0);
-        when(pinkCarOne.getTimeTakenInMinutes(eq(300.0))).thenReturn(300.0);
+        when(bengaluru.distanceTo(eq(bengaluru))).thenReturn(0);
+        when(bengaluru.distanceTo(eq(chennai))).thenReturn(300);
+        when(pinkCarOne.getTimeTakenInMinutes(eq(300.0))).thenReturn(300);
         when(pinkCarOne.calculateTripCharge(eq(300.0))).thenReturn(900.0);
+        when(pinkCarOne.getPlateNumber()).thenReturn("ABC123");
 
-        Trip trip = new TripPlan().createATrip(customerRequest, fleet);
+        Trip trip = new TripPlan().createATrip(customerRequest, fleet).get();
 
-        assertEquals(900, trip.getCharge());
+        verify(fleet, times(1)).updateCarStatus(eq("ABC123"), eq(trip.getTripEndsAt()), eq(chennai));
+        assertEquals("900", trip.getRoundedChargeAmount());
     }
 
 
     @Test
-    public void shouldThrowRuntimeExceptionWithCustomMessage() {
+    public void shouldReturnEmptyTripWhenNoCarAvailable() {
         Location bengaluru = mock(Location.class);
         Location chennai = mock(Location.class);
         Fleet fleet = mock(Fleet.class);
@@ -47,11 +49,8 @@ public class TripPlanTest {
         when(fleet.getAnNearestAvailableCar(eq(Color.PINK), eq(bookingTime), eq(bengaluru)))
                 .thenReturn(null);
 
-        Exception exception = assertThrows(RuntimeException.class,
-                () -> new TripPlan().createATrip(customerRequest, fleet));
 
-        assertEquals("Cars are not available at this time, Please try again later"
-                , exception.getMessage());
+        assertTrue(new TripPlan().createATrip(customerRequest, fleet).isEmpty());
     }
 
 }

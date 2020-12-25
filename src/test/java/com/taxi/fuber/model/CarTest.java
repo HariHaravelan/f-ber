@@ -31,10 +31,10 @@ public class CarTest {
 
     @Test
     public void shouldReturnCarsSortedByDistanceToGivenLocation() {
-        Location mysore = new Location(12.2958, 76.6394);
+        Location mysuru = new Location(12.2958, 76.6394);
         List<Car> cars = new ArrayList<>(Arrays.asList(pinkCarOne, pinkCarTwo, regularCarOne, regularCarTwo));
 
-        cars.sort(new CarComparator<>(mysore));
+        cars.sort(new CarComparator<>(mysuru));
 
         assertArrayEquals(new Car[]{regularCarOne, pinkCarTwo, regularCarTwo, pinkCarOne}, cars.toArray(new Car[0]));
     }
@@ -72,6 +72,6 @@ public class CarTest {
 
         double timeTaken = pinkCarOne.getTimeTakenInMinutes(distanceToTravel);
 
-        assertEquals(90, timeTaken);
+        assertEquals(45, timeTaken);
     }
 }
