@@ -5,25 +5,55 @@ import com.taxi.fuber.model.Car;
 import com.taxi.fuber.model.Color;
 import com.taxi.fuber.model.Fleet;
 import com.taxi.fuber.model.Location;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class FleetService {
 
-    Location bengaluru = new Location(12.972442, 77.580643);
-    Location chennai = new Location(13.0827, 80.2707);
-    Location kolkata = new Location(22.5726, 88.3639);
-    Location mumbai = new Location(19.0760, 72.8777);
-    Location mysuru = new Location(12.2958, 76.6394);
-    Car dzire = new Car("ABC123", Color.OTHERS, bengaluru);
-    Car nonPinkBeetle = new Car("KLM123", Color.OTHERS, chennai);
-    Car beetle = new Car("DEF123", Color.PINK, chennai);
-    Car miniCooper = new Car("GHI123", Color.OTHERS, kolkata);
-    Car innova = new Car("XYZ123", Color.OTHERS, mumbai);
-
     public Fleet getFleet() {
-        return new Fleet(Arrays.asList(dzire, beetle, miniCooper, innova, nonPinkBeetle));
+        return new Fleet(loadCarDetails());
     }
+
+    private List<Car> loadCarDetails() {
+        try {
+            List<Car> cars = new ArrayList<>();
+            File csvFile = new ClassPathResource("data.txt").getFile();
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    cars.add(buildCar(line));
+                }
+            }
+            return cars;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Car buildCar(String line) {
+        String[] lineParts = line.split(",");
+        Location location = new Location(Double.parseDouble(lineParts[1]),
+                Double.parseDouble(lineParts[2]));
+        Color color = new Random().nextInt() % 3 == 0 ? Color.PINK : Color.OTHERS;
+        return new Car(buildPlateNumber(lineParts[0]), color, location);
+    }
+
+    private String buildPlateNumber(String city) {
+        int middleIndex = city.length() / 2;
+        int numberPart = (int) (Math.random() * 1890);
+        return (city.substring(0, 1) +
+                city.substring(middleIndex, middleIndex + 1)
+                + city.substring(city.length() - 1) + numberPart)
+                .toUpperCase();
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.taxi.fuber.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class Car {
         return this.plateNumber;
     }
 
+    @JsonIgnore
     public Location getLocation() {
         return this.currentLocation;
     }
