@@ -34,7 +34,7 @@ public class TripPlanTest {
         Trip trip = new TripPlan().createATrip(customerRequest, fleet).get();
 
         verify(fleet, times(1)).updateCarStatus(eq("ABC123"), eq(trip.getTripEndsAt()), eq(chennai));
-        assertEquals("900", trip.getRoundedChargeAmount());
+        assertEquals("900 dogecoins", trip.getRoundedChargeAmount());
     }
 
 

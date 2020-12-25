@@ -51,25 +51,25 @@ public class FuberApplicationTests {
         Trip mumbaiBengaluruMysuruTripOnNonPinkInnova = new TripPlan().createATrip(rideOnANonPinkCarBengaluruToMysuru, fleet).get();
         Trip kolkataBengaluruMysuruTripOnNonPinkMiniCooper = new TripPlan().createATrip(rideOnANonPinkCarBengaluruToMysuru, fleet).get();
 
-        assertEquals("1256", chennaiBengaluruMysuruTripOnPinkBeetle.getRoundedChargeAmount());
+        assertEquals("1256 dogecoins", chennaiBengaluruMysuruTripOnPinkBeetle.getRoundedChargeAmount());
         assertEquals(0,
                 Duration.between(expectedChennaiBengaluruMysuruTripEndsAt, chennaiBengaluruMysuruTripOnPinkBeetle.getTripEndsAt()).getSeconds(), 1);
 
-        assertEquals("378", bengaluruBengaluruMysuruTripOnNonPinkDzire.getRoundedChargeAmount());
+        assertEquals("378 dogecoins", bengaluruBengaluruMysuruTripOnNonPinkDzire.getRoundedChargeAmount());
         assertEquals(0,
                 Duration.between(expectedBengaluruBengaluruMysuruTripEndsAt, bengaluruBengaluruMysuruTripOnNonPinkDzire.getTripEndsAt()).getSeconds(), 1);
 
 
-        assertEquals("1251", chennaiBengaluruMysuruTripOnNonPinkBeetle.getRoundedChargeAmount());
+        assertEquals("1251 dogecoins", chennaiBengaluruMysuruTripOnNonPinkBeetle.getRoundedChargeAmount());
         assertEquals(0,
                 Duration.between(expectedChennaiBengaluruMysuruTripEndsAt, chennaiBengaluruMysuruTripOnPinkBeetle.getTripEndsAt()).getSeconds(), 1);
 
-        assertEquals("2910", mumbaiBengaluruMysuruTripOnNonPinkInnova.getRoundedChargeAmount());
+        assertEquals("2910 dogecoins", mumbaiBengaluruMysuruTripOnNonPinkInnova.getRoundedChargeAmount());
         assertEquals(0,
                 Duration.between(expectedMumbaiBengaluruMysuruTripEndsAt, mumbaiBengaluruMysuruTripOnNonPinkInnova.getTripEndsAt()).getSeconds(), 1);
 
 
-        assertEquals("5061", kolkataBengaluruMysuruTripOnNonPinkMiniCooper.getRoundedChargeAmount());
+        assertEquals("5061 dogecoins", kolkataBengaluruMysuruTripOnNonPinkMiniCooper.getRoundedChargeAmount());
         assertEquals(0,
                 Duration.between(expectedKolkataBengaluruMysuruTripEndsAt, kolkataBengaluruMysuruTripOnNonPinkMiniCooper.getTripEndsAt()).getSeconds(), 1);
 

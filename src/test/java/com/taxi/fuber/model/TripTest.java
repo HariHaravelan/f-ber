@@ -46,7 +46,7 @@ public class TripTest {
 
         Trip trip = new Trip(regularCar, bookingTime, bengaluru, chennai);
 
-        assertEquals("900", trip.getRoundedChargeAmount());
+        assertEquals("900 dogecoins", trip.getRoundedChargeAmount());
     }
 
 }
