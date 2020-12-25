@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fuber</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+
+    <script>
+
+        const pinkTaxiIcon = {
+            path: "M18.92 6.01C18.72 5.42 18.16 5 17.5 5H15V3H9v2H6.5c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z",
+            fillColor: '#FF1493',
+            fillOpacity: .9,
+            anchor: new google.maps.Point(0, 0),
+            strokeWeight: 0,
+            scale: 1
+        };
+        const greenTaxiIcon = {
+            path: "M18.92 6.01C18.72 5.42 18.16 5 17.5 5H15V3H9v2H6.5c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z",
+            fillColor: '#48cf0e',
+            fillOpacity: .8,
+            anchor: new google.maps.Point(0, 0),
+            strokeWeight: 0,
+            scale: 1
+        }
+        window.onload = () => {
+            loadMap();
+        };
+        const loadMap = () => {
+            const mapOptions = {
+                center: new google.maps.LatLng(12.9716,77.5946),
+                zoom: 12
+            };
+            const map = new google.maps.Map(document.getElementById("sample"), mapOptions);
+
+            const markers= [];
+            const url = 'http://localhost:8080/cars';
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.onload = (data) => {
+                const cars = JSON.parse(data.target.response);
+                cars.map(car => {
+                         if(!car.available){
+                             console.log(car.available,car.currentLocation)
+                         }
+                         markers.push(new google.maps.Marker({
+                            position: new google.maps.LatLng(car.currentLocation.latitude, car.currentLocation.longitude),
+                            map: map,
+                            icon: car.color === 'OTHERS' ? greenTaxiIcon : pinkTaxiIcon,
+                        }))
+                    }
+                )
+            }
+            httpRequest.open('GET', url);
+            httpRequest.send();
+        }
+    </script>
+
+</head>
+
+<body>
+<div id="sample" style="width:1640px; height:800px;"></div>
+</body>
+
+</html>

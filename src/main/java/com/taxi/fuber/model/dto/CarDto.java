@@ -6,7 +6,7 @@ import com.taxi.fuber.model.Color;
 import com.taxi.fuber.model.Location;
 
 @JsonSerialize
-public class CarResponse {
+public class CarDto {
     @JsonProperty
     private String plateNumber;
     @JsonProperty
@@ -16,7 +16,7 @@ public class CarResponse {
     @JsonProperty
     private boolean available;
 
-    public CarResponse(String plateNumber, Color color, Location currentLocation, boolean available) {
+    public CarDto(String plateNumber, Color color, Location currentLocation, boolean available) {
         this.plateNumber = plateNumber;
         this.color = color;
         this.currentLocation = currentLocation;
