@@ -23,5 +23,9 @@ public class Fleet {
             car.updateNextAvailableAt(tripEndsAt);
         });
     }
+
+    public List<Car> getCars() {
+        return this.cars;
+    }
 }
 

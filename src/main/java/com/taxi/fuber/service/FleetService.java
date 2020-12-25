@@ -8,6 +8,7 @@ import com.taxi.fuber.model.Location;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,8 +20,15 @@ import java.util.Random;
 @Service
 public class FleetService {
 
+    private Fleet fleet;
+
+    @PostConstruct
+    private void setUp() {
+        fleet = new Fleet(loadCarDetails());
+    }
+
     public Fleet getFleet() {
-        return new Fleet(loadCarDetails());
+        return this.fleet;
     }
 
     private List<Car> loadCarDetails() {

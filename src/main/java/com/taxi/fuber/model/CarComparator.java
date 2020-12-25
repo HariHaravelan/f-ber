@@ -11,8 +11,8 @@ public class CarComparator<T> implements Comparator<Car> {
 
     @Override
     public int compare(Car thisCar, Car thatCar) {
-        return Double.compare(thisCar.getLocation().distanceTo(toLocation),
-                thatCar.getLocation().distanceTo(toLocation));
+        return Double.compare(thisCar.getCurrentLocation().distanceTo(toLocation),
+                thatCar.getCurrentLocation().distanceTo(toLocation));
     }
 
 }

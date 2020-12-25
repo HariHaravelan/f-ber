@@ -12,21 +12,27 @@ import static com.taxi.fuber.model.TripRule.DOGE_COINS;
 
 @JsonSerialize
 public class Trip {
-    @JsonProperty("car")
+    @JsonProperty
     private Car car;
-    @JsonProperty("bookedAt")
-    private LocalDateTime bookedAt;
     private double distanceToPickupPoint;
     private double distanceFromPickUpToDestination;
     private double totalTimeTaken;
     private double timeTakenToPickupLocation;
+    @JsonProperty
+    private Location pickUpLocation;
+    @JsonProperty
+    private Location dropLocation;
+    @JsonProperty
+    private LocalDateTime bookedAt;
 
     private static DecimalFormat CHARGE_AMOUNT_FORMAT = new DecimalFormat("#.##");
 
     public Trip(Car car, LocalDateTime bookedAt, Location pickUpLocation, Location dropLocation) {
         this.car = car;
         this.bookedAt = bookedAt;
-        this.distanceToPickupPoint = this.car.getLocation().distanceTo(pickUpLocation);
+        this.pickUpLocation = pickUpLocation;
+        this.dropLocation = dropLocation;
+        this.distanceToPickupPoint = this.car.getCurrentLocation().distanceTo(pickUpLocation);
         this.timeTakenToPickupLocation = this.car.getTimeTakenInMinutes(distanceToPickupPoint);
         this.distanceFromPickUpToDestination = pickUpLocation.distanceTo(dropLocation);
         this.totalTimeTaken = this.car.getTimeTakenInMinutes(this.distanceToPickupPoint
