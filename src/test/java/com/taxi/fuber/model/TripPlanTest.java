@@ -49,7 +49,6 @@ public class TripPlanTest {
         when(fleet.getAnNearestAvailableCar(eq(Color.PINK), eq(bookingTime), eq(bengaluru)))
                 .thenReturn(null);
 
-
         assertTrue(new TripPlan().createATrip(customerRequest, fleet).isEmpty());
     }
 
