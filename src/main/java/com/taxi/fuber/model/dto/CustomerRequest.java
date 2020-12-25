@@ -7,13 +7,13 @@ import java.time.LocalDateTime;
 
 public class CustomerRequest {
     private Location currentLocation;
-    private Location destination;
+    private Location dropLocation;
     private LocalDateTime bookingTime;
     private Color colorPreference;
 
-    public CustomerRequest(Location currentLocation, Location destination, LocalDateTime bookingTime, Color colorPreference) {
+    public CustomerRequest(Location currentLocation, Location dropLocation, LocalDateTime bookingTime, Color colorPreference) {
         this.currentLocation = currentLocation;
-        this.destination = destination;
+        this.dropLocation = dropLocation;
         this.bookingTime = bookingTime;
         this.colorPreference = colorPreference;
     }
@@ -22,8 +22,8 @@ public class CustomerRequest {
         return currentLocation;
     }
 
-    public Location getDestination() {
-        return destination;
+    public Location getDropLocation() {
+        return dropLocation;
     }
 
     public LocalDateTime getBookingTime() {

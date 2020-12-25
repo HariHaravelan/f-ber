@@ -1,8 +1,8 @@
 package com.taxi.fuber.model;
 
-import java.math.BigDecimal;
-import java.util.Comparator;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonSerialize
 public class Location {
     private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.1515;
     private static final double MILE_TO_KM = 1.609344;
@@ -15,7 +15,7 @@ public class Location {
         this.longitude = longitude;
     }
 
-    public double distanceTo(Location location) {
+    public int distanceTo(Location location) {
         double lat1 = Math.toRadians(this.latitude);
         double lon1 = Math.toRadians(this.longitude);
         double lat2 = Math.toRadians(location.latitude);
@@ -27,7 +27,7 @@ public class Location {
         double distanceInKms = EARTH_DEGREE * Math.toDegrees(angle) *
                 STATUTE_MILES_PER_NAUTICAL_MILE * MILE_TO_KM;
 
-        return distanceInKms;
+        return (int) distanceInKms;
     }
 
 }

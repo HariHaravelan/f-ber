@@ -17,8 +17,11 @@ public class Fleet {
                 .findFirst().orElse(null);
     }
 
-    public void updateCarStatus(Car car) {
-
+    public void updateCarStatus(String plateNumber, LocalDateTime tripEndsAt, Location dropLocation) {
+        this.cars.stream().filter(car -> plateNumber.equals(car.getPlateNumber())).forEach(car -> {
+            car.updateCurrentLocation(dropLocation);
+            car.updateNextAvailableAt(tripEndsAt);
+        });
     }
 }
 

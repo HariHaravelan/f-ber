@@ -8,4 +8,8 @@ public enum Color {
     Color(int additionalCharge) {
         this.additionalCharge = additionalCharge;
     }
+
+    public int getAdditionalCharge() {
+        return additionalCharge;
+    }
 }
