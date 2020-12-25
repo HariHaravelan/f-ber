@@ -74,4 +74,15 @@ public class CarTest {
 
         assertEquals(45, timeTaken);
     }
+
+    @Test
+    public void shouldUpdateCurrentPointAsDropLocation() {
+        Location mumbai = new Location(19.0760, 72.8777);
+        Location kolkata = new Location(22.5726, 88.3639);
+
+        pinkCarOne.updateCurrentLocation(mumbai);
+
+        assertEquals(kolkata, pinkCarOne.getStartPoint());
+        assertEquals(mumbai, pinkCarOne.getCurrentLocation());
+    }
 }

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class Car {
     private String plateNumber;
     private Color color;
+    private Location startPoint;
     private Location currentLocation;
     private double speedKmPh;
     private LocalDateTime nextAvailableAt;
@@ -30,8 +31,12 @@ public class Car {
     }
 
     @JsonIgnore
-    public Location getLocation() {
+    public Location getCurrentLocation() {
         return this.currentLocation;
+    }
+
+    public Location getStartPoint() {
+        return startPoint;
     }
 
     public boolean isAvailable(LocalDateTime time) {
@@ -52,6 +57,7 @@ public class Car {
     }
 
     public void updateCurrentLocation(Location dropLocation) {
+        this.startPoint = this.currentLocation;
         this.currentLocation = dropLocation;
     }
 }

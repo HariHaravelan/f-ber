@@ -24,7 +24,7 @@ public class TripPlanTest {
         when(fleet.getAnNearestAvailableCar(eq(Color.PINK), eq(bookingTime), eq(bengaluru)))
                 .thenReturn(pinkCarOne);
         doNothing().when(fleet).updateCarStatus(eq("ABC123"), eq(bookingTime), eq(chennai));
-        when(pinkCarOne.getLocation()).thenReturn(bengaluru);
+        when(pinkCarOne.getCurrentLocation()).thenReturn(bengaluru);
         when(bengaluru.distanceTo(eq(bengaluru))).thenReturn(0);
         when(bengaluru.distanceTo(eq(chennai))).thenReturn(300);
         when(pinkCarOne.getTimeTakenInMinutes(eq(300.0))).thenReturn(300);

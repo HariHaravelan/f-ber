@@ -55,9 +55,9 @@ public class FleetTest {
         when(beetle.getColor()).thenReturn(Color.PINK);
         when(polo.getColor()).thenReturn(Color.OTHERS);
         when(dzire.getPlateNumber()).thenReturn("ABC123");
-        when(dzire.getLocation()).thenReturn(new Location(1, 2));
-        when(beetle.getLocation()).thenReturn(new Location(10, 20));
-        when(polo.getLocation()).thenReturn(new Location(2, 2));
+        when(dzire.getCurrentLocation()).thenReturn(new Location(1, 2));
+        when(beetle.getCurrentLocation()).thenReturn(new Location(10, 20));
+        when(polo.getCurrentLocation()).thenReturn(new Location(2, 2));
         when(dzire.isAvailable(any(LocalDateTime.class))).thenReturn(true);
         when(beetle.isAvailable(any(LocalDateTime.class))).thenReturn(true);
         when(polo.isAvailable(any(LocalDateTime.class))).thenReturn(true);

@@ -20,7 +20,7 @@ public class TripTest {
         Car pinkCarOne = mock(Car.class);
 
         when(pinkCarOne.getTimeTakenInMinutes(eq(300.0))).thenReturn(300);
-        when(pinkCarOne.getLocation()).thenReturn(bengaluru);
+        when(pinkCarOne.getCurrentLocation()).thenReturn(bengaluru);
         when(bengaluru.distanceTo(eq(bengaluru))).thenReturn(0);
         when(bengaluru.distanceTo(eq(chennai))).thenReturn(300);
 
@@ -39,7 +39,7 @@ public class TripTest {
 
         when(regularCar.getTimeTakenInMinutes(eq(300.0))).thenReturn(300);
         when(regularCar.getColor()).thenReturn(Color.OTHERS);
-        when(regularCar.getLocation()).thenReturn(bengaluru);
+        when(regularCar.getCurrentLocation()).thenReturn(bengaluru);
         when(bengaluru.distanceTo(eq(bengaluru))).thenReturn(0);
         when(bengaluru.distanceTo(eq(chennai))).thenReturn(300);
         when(regularCar.calculateTripCharge(eq(300.0))).thenReturn(900.0);
