@@ -60,5 +60,10 @@ public class Car {
         this.startPoint = this.currentLocation;
         this.currentLocation = dropLocation;
     }
+
+    @JsonIgnore
+    public LocalDateTime getNextAvailableAt() {
+        return this.nextAvailableAt;
+    }
 }
 

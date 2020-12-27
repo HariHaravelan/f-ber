@@ -30,6 +30,6 @@ public class CarController {
 
     private CarDto toCarResponse(Car car) {
         return new CarDto(car.getPlateNumber(), car.getColor(), car.getCurrentLocation(),
-                car.isAvailable(LocalDateTime.now()));
+                car.isAvailable(LocalDateTime.now()), car.getNextAvailableAt());
     }
 }
