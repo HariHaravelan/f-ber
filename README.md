@@ -126,6 +126,7 @@ HTTP 200 OK
 ```
 
 ###UI
+Fuber backend should be started for the UI work properly
 All cars available:
 - PINK Cars are denoted  by ping icon  
 - Other Cars are denoted by Green
