@@ -126,13 +126,14 @@ HTTP 200 OK
 ```
 
 ###UI
-Fuber backend should be started for the UI work properly
-All cars available:
+Fuber backend should be started for the UI work properly 
+
+**All cars available:**
 - PINK Cars are denoted  by ping icon  
 - Other Cars are denoted by Green
   ![initial_state](initial_state.png)
 
-One of the cars is booked:
+**One of the cars is booked:**
 - Booked Cars are denoted by red color
 - Booked Cars shows next available time on infowindow
   ![after_booking](after_booking.png)
