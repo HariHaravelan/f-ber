@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @JsonSerialize
 public class Car {
+    public static final int MINUTES_PER_HOUR = 60;
     private String plateNumber;
     private Color color;
     private Location startPoint;
@@ -49,7 +50,7 @@ public class Car {
     }
 
     public int getTimeTakenInMinutes(double distanceInKm) {
-        return (int) ((distanceInKm / this.speedKmPh) * 60);
+        return (int) ((distanceInKm / this.speedKmPh) * MINUTES_PER_HOUR);
     }
 
     public void updateNextAvailableAt(LocalDateTime tripEndsAt) {
