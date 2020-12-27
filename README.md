@@ -1,8 +1,8 @@
-#Taxi hailing app: Fuber
+# Taxi hailing app: Fuber
 Solution to Fuber is written in java. Gradle is used as build tool.
 Spring Boot framework is used only to create HTTP end points
 
-###Code style
+### Code style
 - Solution follows object oriented programming principles
 - Solution is developed in Test Driven Development approach.
 
@@ -18,21 +18,21 @@ Spring Boot framework is used only to create HTTP end points
 - Every`Car` is _assumed_ to travel at 60KmPh
 - Every`Trp` is being added `TripLog` after it gets created
 
-###To run the tests
+### To run the tests
 
 ```
 ./gradlew test
 ```
 
-###To start the application
+### To start the application
 This should start the application in port 8080
 
 ```
 ./gradlew bootRun
 ```
 
-##REST EndPoints
-###Booking a Taxi
+## REST EndPoints
+### Booking a Taxi
 To create a booking 
 ```http request
 POST /booking
@@ -92,7 +92,7 @@ HTTP 200 OK
 }
 ```
 
-###List Cars
+### List Cars
 To get list of all the cars with details
 ```http request
 GET /cars
