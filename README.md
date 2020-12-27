@@ -125,7 +125,7 @@ HTTP 200 OK
 ]
 ```
 
-###UI
+### UI
 Fuber backend should be started for the UI work properly 
 
 **All cars available:**
